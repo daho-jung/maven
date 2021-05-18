@@ -34,7 +34,7 @@
 						<c:forEach items="${list}" var="board">
 							<tr class="odd gradeX">
 								<td><c:out value="${board.bno}" /></td>
-								<td><c:out value="${board.title}" /></td>
+								<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}"/></a></td>
 								<td><c:out value="${board.writer}" /></td>
 								<td><fmt:formatDate value="${board.regdate}"
 										pattern="yyyy/MM/dd" /></td>
@@ -61,7 +61,7 @@
 					aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 			</div>
-			<div class="modal-body">ssssssssss</div>
+			<div class="modal-body">mmmmoooodddd</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary">Save changes</button>
@@ -73,11 +73,16 @@
 </div>
 <script type="text/javascript">
           	$(document).ready(function(){
-          		var result= '<c:out value="${result}"/>'
+          		var result= '<c:out value="${result}"/>';
+          		var board= '<c:out value="${board}"/>';
+          		
           		checkModal(result);
+          		history.replaceState({},null,null);
           		
           		function checkModal(result){
-          			if(result==''){
+          			console.log('result',result);
+          			console.log('board',board);
+          			if(result===''|| history.state){
           				return;
           			}
           			if(parseInt(result)>0){
