@@ -5,7 +5,7 @@
 <%@include file="../includes/header.jsp"%>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Tables</h1>
+		<h1 class="page-header">getTables</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -13,10 +13,10 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
-			<div class="panel-heading">regregreg</div>
+			<div class="panel-heading">getdata</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
-				<form role="form" action="/board/register" method="post">
+				<!-- <form role="form" action="/board/list" method="get"> -->
 					<div class="form-group">
 						<label>bno</label>
 						<input class="form-control" name="bno" readonly="readonly" value='<c:out value="${board.bno}"/>'>
@@ -36,7 +36,7 @@
 					<button data-oper='modify' class="btn btn-default"
 					 onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">mod</button>
 					<button data-oper='list' class="btn btn-info" onclick="location.href='/board/list'">list</button>
-				</form>
+				<!-- </form> -->
 			</div>
 		</div>
 	</div>

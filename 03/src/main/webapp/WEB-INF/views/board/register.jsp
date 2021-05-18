@@ -37,5 +37,12 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("form").each(function(){
+			this.reset();
+		})
+	})
 
+</script>
 <%@include file="../includes/footer.jsp"%>
