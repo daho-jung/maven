@@ -18,24 +18,28 @@
 			<div class="panel-body">
 				<form role="form" action="/board/register" method="post">
 					<div class="form-group">
+						<label>bno</label>
+						<input class="form-control" name="bno" readonly="readonly" value='<c:out value="${board.bno}"/>'>
+					</div>
+					<div class="form-group">
 						<label>title</label>
-						<input class="form-control" name="title">
+						<input class="form-control" name="title" readonly="readonly" value='<c:out value="${board.title}"/>'>
 					</div>
 					<div class="form-group">
 						<label>text area</label>
-						<textarea class="form-control" rows="3" name="content"></textarea>
+						<textarea class="form-control" rows="3" name="content" readonly="readonly"><c:out value="${board.content}"/></textarea>
 					</div>
 					<div class="form-group">
 						<label>writer</label>
-						<input class="form-control" name="writer">
+						<input class="form-control" name="writer" readonly="readonly" value='<c:out value="${board.writer}"/>'>
 					</div>
-					<button type="submit" class="btn btn-default">submit</button>
-					<button type="reset" class="btn btn-default">reset</button>
+					<button data-oper='modify' class="btn btn-default"
+					 onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">mod</button>
+					<button data-oper='list' class="btn btn-info" onclick="location.href='/board/list'">list</button>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-
 
 <%@include file="../includes/footer.jsp"%>
