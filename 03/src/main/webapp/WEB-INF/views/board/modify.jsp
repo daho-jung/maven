@@ -17,6 +17,8 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<form role="form" action="/board/modify" method="post">
+				<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
+				<input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
 					<div class="form-group">
 						<label>bno</label>
 						<input class="form-control" name="bno" readonly="readonly" value='<c:out value="${board.bno}"/>'>
@@ -67,8 +69,12 @@
 			if(operation==='remove'){
 				formObj.attr("action","/board/remove");
 			}else if(operation === 'list'){
-				self.location="/board/list";
-				return;
+				formObj.attr("action","/board/list").attr("method","get");
+				var pnt = $("input[name='pageNum']").clone();
+				var amt = $("input[name='amount']").clone();
+				formObj.empty();
+				formObj.append(pnt);
+				formObj.append(amt);
 			}
 			formObj.submit();
 		});
