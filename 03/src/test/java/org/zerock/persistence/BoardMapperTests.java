@@ -1,11 +1,14 @@
 package org.zerock.persistence;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.Setter;
@@ -70,5 +73,22 @@ public class BoardMapperTests {
 		b.setBno(3L);
 		int t = mapper.update(b);
 		log.info(t);
+	}
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		cri.setAmount(15);
+		cri.setPageNum(2);
+		List<BoardVO> li = mapper.getListWithPaging(cri);
+		li.forEach(board -> log.info(board));
+	}
+	@Test
+	public void testSearch() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("nnn");
+		cri.setType("TC");
+		
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		list.forEach(board -> log.info(board));
 	}
 }

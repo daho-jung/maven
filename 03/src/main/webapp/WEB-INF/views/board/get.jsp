@@ -34,12 +34,34 @@
 						<input class="form-control" name="writer" readonly="readonly" value='<c:out value="${board.writer}"/>'>
 					</div>
 					<button data-oper='modify' class="btn btn-default"
-					 onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">mod</button>
-					<button data-oper='list' class="btn btn-info" onclick="location.href='/board/list'">list</button>
+					>mod</button>
+					<button data-oper='list' class="btn btn-info">list</button>
+					
+					<form id='operForm' action="/board/modify" method="get">
+						<input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
+						<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+						<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+						<input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
+						<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>
+					</form>
 				<!-- </form> -->
 			</div>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var operForm=$("#operForm");
+		$("button[data-oper='modify']").on("click",function(e){
+			operForm.attr("action","/board/modify").submit();
+		});
+		
+		$("button[data-oper='list']").on("click",function(e){
+			operForm.find("#bno").remove();
+			operForm.attr("action","/board/list");
+			operForm.submit();
+		});
+	})
+</script>
 
 <%@include file="../includes/footer.jsp"%>
